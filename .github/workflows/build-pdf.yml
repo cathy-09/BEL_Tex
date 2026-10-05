@@ -18,7 +18,7 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
-          output_file: main.pdf
+          compiler: latexmk
 
       - name: Varna PDF-a v repoto
         uses: stefanzweifel/git-auto-commit-action@v5
