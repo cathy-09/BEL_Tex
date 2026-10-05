@@ -1,1 +1,27 @@
+name: Compile LaTeX to PDF
 
+on:
+  push:
+    branches: [ main, master ]
+
+permissions:
+  contents: write
+
+jobs:
+  build_and_commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Svali koda
+        uses: actions/checkout@v4
+
+      - name: Napravi PDF-a
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          output_file: main.pdf
+
+      - name: Varna PDF-a v repoto
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          file_pattern: main.pdf
+          commit_message: "Automated PDF build from LaTeX [skip ci]"
